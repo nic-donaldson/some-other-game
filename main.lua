@@ -12,14 +12,14 @@ function love.load()
   
   controls = {
     {
-      rock = "a",
-      paper = "z",
-      scissors = "x"
+      ['a'] = "rock",
+      ['z'] = "paper",
+      ['x'] = "scissors"
     },
     {
-      rock = "'",
-      paper = "/",
-      scissors = "."
+      ["'"] = "rock",
+      ["/"] = "paper",
+      ["."] = "scissors"
     }
   }
 end
