@@ -152,7 +152,15 @@ function getWinner(p1, p2)
     end
 end 
 
-function drawMoves(p1, p2)
+function drawBarGraph(x, y, width, height, r, p, s)
+    -- Draws a bar graph of rock paper scissors move frequency, expects r p s whole numbers
+
+    -- Normalise to 0,1
+    local max = math.max(r, p, s)
+    r = max/r
+    p = max/p
+    s = max/s
+
 end
 
 function love.update(dt)
