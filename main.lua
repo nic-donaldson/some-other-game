@@ -2,7 +2,7 @@ winColour = {0, 255, 0, 255}
 loseColour = {255, 0, 0, 255}
 drawColour = {0, 0, 255, 255}
 waitingColour = {128,128,128,255}
-
+shadedHandColour = { 200,200,200,255 }
 
 
 function love.load()
@@ -48,40 +48,51 @@ function love.load()
     }
 
     sounds = {
-        p1select = love.audio.newSource("resources/sounds/p1select.wav", "static"),
-        p2select = love.audio.newSource("resources/sounds/p2select.wav", "static")
+        {
+            rock = love.audio.newSource("resources/sounds/rock1.wav", "static"),
+            paper = love.audio.newSource("resources/sounds/paper1.wav", "static"),
+            scissors = love.audio.newSource("resources/sounds/scissors1.wav", "static")
+        },
+        {    
+            rock = love.audio.newSource("resources/sounds/rock2.wav", "static"),
+            paper = love.audio.newSource("resources/sounds/paper2.wav", "static"),
+            scissors = love.audio.newSource("resources/sounds/scissors2.wav", "static"),
+        }
     }
   
     boxes = {
         {
             rock = {
-                image = {x = 100, y = 100, w = 20},
+                image = {x = 50, y = 100, w = 20},
                 stats = {x = 120, y = 100, w = 20}
             },
             paper = {
-                image = {x = 150, y = 200, w = 20},
+                image = {x = 100, y = 200, w = 20},
                 stats = {x = 170, y = 200, w = 20}
             },
             scissors = {
-                image = {x = 250, y = 200, w = 20},
+                image = {x = 200, y = 200, w = 20},
                 stats = {x = 270, y = 200, w = 20}
-            }
+            },
+            win = {x = 400, y = 100, w = 20}
         },
         {
             rock = {
-                image = {x = 900, y = 100, w = 20},
+                image = {x = 850, y = 100, w = 20},
                 stats = {x = 920, y = 100, w = 20}
             },
             paper = {
-                image = {x = 850, y = 200, w = 20},
+                image = {x = 800, y = 200, w = 20},
                 stats = {x = 870, y = 200, w = 20}
             },
             scissors = {
-                image = {x = 750, y = 200, w = 20},
+                image = {x = 700, y = 200, w = 20},
                 stats = {x = 770, y = 200, w = 20}
-            }
+            },
+            win = {x = 600, y = 100, w = 20}
         }
     }
+    love.window.setTitle("Rock paper scissors")
   
   
   controls = {
@@ -114,12 +125,24 @@ function love.draw()
         end
         love.graphics.setColor(colour[1], colour[2], colour[3], colour[4])
         love.graphics.rectangle("fill",(i-1)*sw/2,0,sw/2,sh)
-        love.graphics.setColor(255,255,255,255)
         for _,hand in ipairs({"rock", "paper", "scissors"}) do
+            love.graphics.push("all")
             local q = string.sub(hand, 1, 1)
+            if hand == last_state[i] then
+                colour = shadedHandColour
+            else
+                colour = {255,255,255,255}
+            end
+            love.graphics.setColor(colour[1], colour[2], colour[3], colour[4])
+            
             love.graphics.draw( images[hand], boxes[i][hand].image.x, boxes[i][hand].image.y, 0, 0.1, 0.1)
+            
+
+            love.graphics.setColor(255,255,255,255)
           --  love.graphics.printf(q, boxes[i][hand].image.x, boxes[i][hand].image.y, boxes[i][hand].image.w, "center")
             love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
+            love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
+            love.graphics.pop()
         end
     end
 end
@@ -170,11 +193,9 @@ function love.keypressed(key)
     for i, v in ipairs(controls) do
       if v[key] then
         input[i] = v[key]
-        if i == 1 then -- if p1 has selected a new move
-            love.audio.play(sounds.p1select)
-        else
-            love.audio.play(sounds.p2select)
-        end
+
+        sounds[i][input[i]]:stop()
+        sounds[i][input[i]]:play()
       end
     end
 
