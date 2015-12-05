@@ -31,7 +31,7 @@
   <defs
      id="defs3375" />
   <sodipodi:namedview
-     pagecolor="#ffffff"
+     pagecolor="#ff8f38"
      bordercolor="#666666"
      borderopacity="1"
      objecttolerance="10"
@@ -44,19 +44,19 @@
      id="namedview3373"
      showgrid="false"
      inkscape:zoom="0.8466467"
-     inkscape:cx="122.6151"
-     inkscape:cy="265.76891"
+     inkscape:cx="309.23367"
+     inkscape:cy="252.77648"
      inkscape:window-x="0"
      inkscape:window-y="16"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer3" />
+     inkscape:current-layer="layer1" />
   <g
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="Layer 1"
      style="opacity:1">
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
        d="M 716.94604,373.58804 597.65189,282.64101 558.67459,260.19953 531.5086,240.12032 496.07469,233.03354 455.91626,218.85998 395.67862,169.25251 337.80324,123.18843 296.46368,88.935653 262.21091,64.131919 231.50152,48.777226 l -14.17356,-3.543391 -10.63017,4.724521 -8.26791,12.992433 4.72452,24.803734 27.16599,25.984867 46.06408,35.4339 42.52069,41.33956 29.52825,34.25278 1.18113,33.07164 -44.88294,-7.08678 -90.94703,-27.16599 -56.69425,-12.99243 -43.70182,-9.44905 -20.079213,-4.72452 -15.354693,1.18113 -14.173562,12.99244 -5.905651,15.35469 8.267911,18.89808 12.992432,8.26791 53.150856,15.3547 77.9546,23.6226 38.9773,11.8113 50.78859,7.08678 76.77347,165.35823 115.75076,25.98487 53.15086,16.53582 42.52069,33.07165 z"
        id="path4191"
        inkscape:connector-curvature="0" />
