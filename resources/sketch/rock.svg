@@ -20,14 +20,14 @@
      id="defs4" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#ffab6a"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="500.579"
-     inkscape:cy="375.45228"
+     inkscape:cx="560.579"
+     inkscape:cy="326.88085"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -53,7 +53,7 @@
      id="layer3"
      inkscape:label="hand">
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
        d="M 317.14286,178.3802 590,122.66591 l 417.1429,148.57143 -2.8572,264.28571 -417.14284,48.57143"
        id="path4182"
        inkscape:connector-curvature="0" />
@@ -64,7 +64,7 @@
      id="layer1"
      transform="translate(0,-308.26772)">
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.80196536;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.80196536;stroke-opacity:1"
        id="rect4138"
        width="204.48376"
        height="100.19804"
@@ -73,7 +73,7 @@
        ry="29.658619"
        rx="104.49762" />
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.91625887;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.91625887;stroke-opacity:1"
        id="rect4138-5"
        width="267.22662"
        height="100.08374"
@@ -82,7 +82,7 @@
        ry="29.624788"
        rx="136.56119" />
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        id="rect4138-5-0"
        width="318.57144"
        height="100"
@@ -92,7 +92,7 @@
        rx="162.8"
        transform="matrix(0.99807454,0.06202592,-0.06202592,0.99807454,0,0)" />
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
        id="rect4138-5-5"
        width="318.57144"
        height="100"
