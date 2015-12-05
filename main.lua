@@ -21,7 +21,7 @@ function love.load()
                 scissors = 0
             }
         },
-        wins = {
+        win = {
             0,
             0
         }
@@ -58,6 +58,11 @@ function love.load()
             paper = love.audio.newSource("resources/sounds/paper2.wav", "static"),
             scissors = love.audio.newSource("resources/sounds/scissors2.wav", "static"),
         }
+    }
+    
+    fonts = {
+        big = love.graphics.newFont(50),
+        small = love.graphics.newFont(20)
     }
   
     boxes = {
@@ -141,11 +146,15 @@ function love.draw()
             
             love.graphics.draw( images[hand], boxes[i][hand].image.x, boxes[i][hand].image.y, 0, 0.1, 0.1) 
             
-
             love.graphics.setColor(255,255,255,255)
           --  love.graphics.printf(q, boxes[i][hand].image.x, boxes[i][hand].image.y, boxes[i][hand].image.w, "center")
+          
+            love.graphics.setFont(fonts.small)
             love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
-            love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
+          
+            love.graphics.setFont(fonts.big)
+            love.graphics.printf(math.floor(((stats.win[i]/stats.games)*100)), boxes[i]['win'].x, boxes[i]['win'].y, boxes[i]['win'].w, "center")
+            
             love.graphics.pop()
         end
 
@@ -244,7 +253,7 @@ function love.keypressed(key)
       end
 
       if winner ~= 0 then
-          stats.wins[winner] = stats.wins[winner] + 1
+          stats.win[winner] = stats.win[winner] + 1
       end
       
       input[1] = ""
