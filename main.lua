@@ -41,6 +41,12 @@ function love.load()
   
     love.window.setMode(sw,sh)
   
+    images = {
+        rock = love.graphics.newImage("resources/rock.png"),
+        paper = love.graphics.newImage("resources/paper.png"),
+        scissors = love.graphics.newImage("resources/scissors.png")
+    }
+  
     boxes = {
         {
             rock = {
@@ -106,7 +112,8 @@ function love.draw()
         love.graphics.setColor(255,255,255,255)
         for _,hand in ipairs({"rock", "paper", "scissors"}) do
             local q = string.sub(hand, 1, 1)
-            love.graphics.printf(q, boxes[i][hand].image.x, boxes[i][hand].image.y, boxes[i][hand].image.w, "center")
+            love.graphics.draw( images[hand], boxes[i][hand].image.x, boxes[i][hand].image.y, 0, 0.1, 0.1)
+          --  love.graphics.printf(q, boxes[i][hand].image.x, boxes[i][hand].image.y, boxes[i][hand].image.w, "center")
             love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
         end
     end
