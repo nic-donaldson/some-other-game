@@ -3,17 +3,33 @@ loseColour = {255, 0, 0, 255}
 drawColour = {0, 0, 255, 255}
 
 function love.load()
-
+  input = {
+    "",
+    ""
+  }
+  
+  last_state = {
+    "",
+    ""
+  }
+  
+  
+  controls = {
+    {
+      rock = "a",
+      paper = "z",
+      scissors = "x"
+    },
+    {
+      rock = "'",
+      paper = "/",
+      scissors = "."
+    }
+  }
 end
 
 function love.draw()
-    width, height = love.graphics.getDimensions()
-    love.graphics.setColor(255, 0, 0, 255)
-    love.graphics.printf("Rock",  0, height/4, width, "center")
-    love.graphics.setColor(0, 255, 0, 255)
-    love.graphics.printf("Paper", 0, height - height/4, width, "center")
-
-    love.graphics.print(getWinner("rock", "scissors"), 0, 0)
+    drawMoves("rock", "paper")
 end
 
 function love.update(dt)
@@ -44,7 +60,8 @@ function getWinner(p1, p2)
     end
 end 
 
-function drawMoves(p1, p2, winner)
+function drawMoves(p1, p2)
+    local winner = getWinner(p1, p2)
     local p1Colour = drawColour
     local p2Colour = drawColour
     width, height = love.graphics.getDimensions()
@@ -65,4 +82,20 @@ function drawMoves(p1, p2, winner)
     love.graphics.setColor(p2Colour[1], p2Colour[2], p2Colour[3], p2Colour[4])
     love.graphics.printf(p2, 0, height-height/4, width, "center")
     love.graphics.pop()
+end
+
+function love.update(dt)
+end
+
+function love.keypressed(key)
+  for i, v in ipairs(controls) do
+    if v[key] then
+      input[i] = v[key]
+    end
+  end
+
+  if input[1] == input[2] and input[1] ~= "" then
+    last_state[1] = input[1]
+    last_state[2] = input[2]
+  end
 end
