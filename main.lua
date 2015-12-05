@@ -114,6 +114,8 @@ function love.draw()
     local winner = getWinner(last_state[1], last_state[2])
     
     for i = 1,2 do
+
+        -- Background colours
         if input[i] ~= "" then
             colour = waitingColour
         elseif winner == i then
@@ -125,6 +127,8 @@ function love.draw()
         end
         love.graphics.setColor(colour[1], colour[2], colour[3], colour[4])
         love.graphics.rectangle("fill",(i-1)*sw/2,0,sw/2,sh)
+
+        -- Draw RPS graphics
         for _,hand in ipairs({"rock", "paper", "scissors"}) do
             love.graphics.push("all")
             local q = string.sub(hand, 1, 1)
@@ -135,7 +139,7 @@ function love.draw()
             end
             love.graphics.setColor(colour[1], colour[2], colour[3], colour[4])
             
-            love.graphics.draw( images[hand], boxes[i][hand].image.x, boxes[i][hand].image.y, 0, 0.1, 0.1)
+            love.graphics.draw( images[hand], boxes[i][hand].image.x, boxes[i][hand].image.y, 0, 0.1, 0.1) 
             
 
             love.graphics.setColor(255,255,255,255)
@@ -144,7 +148,11 @@ function love.draw()
             love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
             love.graphics.pop()
         end
+
     end
+        -- Draw left bar graph
+        -- x = 0, y = 70% of height, width = 25% of screen, height = 
+        drawBarGraph(0, sh*0.7, sw*0.25, sh*0.30, stats.moves[1].rock, stats.moves[1].paper, stats.moves[1].scissors)
 end
 
 function love.update(dt)
@@ -176,14 +184,38 @@ function getWinner(p1, p2)
 end 
 
 function drawBarGraph(x, y, width, height, r, p, s)
+    love.graphics.push("all")
     -- Draws a bar graph of rock paper scissors move frequency, expects r p s whole numbers
+    
+    -- chart padding
+    local chart_padding = width*0.1
+    local chart_width = width - chart_padding*2
 
-    -- Normalise to 0,1
-    local max = math.max(r, p, s)
-    r = max/r
-    p = max/p
-    s = max/s
+    -- bar padding is the amount of the chart that is free space, halved
+    local bar_space = chart_width*0.7
+    local bar_padding = (chart_width-bar_space)/2
+    local bar_width = bar_space/3
 
+    -- bar height
+    local bar_height = height*0.6
+
+    -- Get percentage in 0,1
+    local total = r + p + s
+    r = r/total
+    p = p/total
+    s = s/total
+    local bar_heights = {r*bar_height, p*bar_height, s*bar_height}
+
+    -- Draw baseline
+    love.graphics.setColor(0, 0, 0, 255)
+    local chart_bottom = y + bar_height
+    love.graphics.line(x, chart_bottom, x+width, chart_bottom)
+
+    -- Draw bars and text
+    for i=1,3 do
+        love.graphics.rectangle("fill", x + chart_padding + (bar_padding + bar_width)*(i-1), y + (bar_height - bar_heights[i]), bar_width, bar_heights[i])
+    end
+    love.graphics.pop()
 end
 
 function love.update(dt)
