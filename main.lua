@@ -22,12 +22,13 @@ function love.load()
       scissors = "."
     }
   }
-  
-  
 end
 
 function love.draw()
-  
+  print("**")
+  print(input[1], input[2])
+  print("--")
+  print(last_state[1], last_state[2])
 end
 
 function love.update(dt)
