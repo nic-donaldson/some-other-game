@@ -50,33 +50,34 @@ function love.load()
     boxes = {
         {
             rock = {
-                image = {x = 100, y = 100, w = 20},
+                image = {x = 50, y = 100, w = 20},
                 stats = {x = 120, y = 100, w = 20}
             },
             paper = {
-                image = {x = 150, y = 200, w = 20},
+                image = {x = 100, y = 200, w = 20},
                 stats = {x = 170, y = 200, w = 20}
             },
             scissors = {
-                image = {x = 250, y = 200, w = 20},
+                image = {x = 200, y = 200, w = 20},
                 stats = {x = 270, y = 200, w = 20}
             }
         },
         {
             rock = {
-                image = {x = 900, y = 100, w = 20},
+                image = {x = 850, y = 100, w = 20},
                 stats = {x = 920, y = 100, w = 20}
             },
             paper = {
-                image = {x = 850, y = 200, w = 20},
+                image = {x = 800, y = 200, w = 20},
                 stats = {x = 870, y = 200, w = 20}
             },
             scissors = {
-                image = {x = 750, y = 200, w = 20},
+                image = {x = 700, y = 200, w = 20},
                 stats = {x = 770, y = 200, w = 20}
             }
         }
     }
+    love.window.setTitle("Rock paper scissors")
   
   
   controls = {
@@ -109,12 +110,20 @@ function love.draw()
         end
         love.graphics.setColor(colour[1], colour[2], colour[3], colour[4])
         love.graphics.rectangle("fill",(i-1)*sw/2,0,sw/2,sh)
-        love.graphics.setColor(255,255,255,255)
         for _,hand in ipairs({"rock", "paper", "scissors"}) do
+            love.graphics.push("all")
             local q = string.sub(hand, 1, 1)
+            if hand == last_state[i] then
+                colour = waitingColour
+            else
+                colour = {255,255,255,255}
+            end
+            love.graphics.setColor(colour[1], colour[2], colour[3], colour[4])
+            
             love.graphics.draw( images[hand], boxes[i][hand].image.x, boxes[i][hand].image.y, 0, 0.1, 0.1)
           --  love.graphics.printf(q, boxes[i][hand].image.x, boxes[i][hand].image.y, boxes[i][hand].image.w, "center")
             love.graphics.printf(math.floor(((stats.moves[i][hand]/stats.games)*100)), boxes[i][hand].stats.x, boxes[i][hand].stats.y, boxes[i][hand].stats.w, "center")
+            love.graphics.pop()
         end
     end
 end
