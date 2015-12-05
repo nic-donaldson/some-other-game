@@ -46,6 +46,11 @@ function love.load()
         paper = love.graphics.newImage("resources/paper.png"),
         scissors = love.graphics.newImage("resources/scissors.png")
     }
+
+    sounds = {
+        p1select = love.audio.newSource("resources/sounds/p1select.wav", "static"),
+        p2select = love.audio.newSource("resources/sounds/p2select.wav", "static")
+    }
   
     boxes = {
         {
@@ -156,11 +161,16 @@ end
 function love.keypressed(key)
     for i, v in ipairs(controls) do
       if v[key] then
-        
         input[i] = v[key]
+        if i == 1 then -- if p1 has selected a new move
+            love.audio.play(sounds.p1select)
+        else
+            love.audio.play(sounds.p2select)
+        end
       end
     end
 
+    -- if both players have selected a move
     if input[1] ~= "" and input[2] ~= "" then
       last_state[1] = input[1]
       last_state[2] = input[2]
